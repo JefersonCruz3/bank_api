@@ -1,6 +1,10 @@
 package com.dbtest.apibancaria.dominio;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
@@ -9,7 +13,8 @@ public class ContaCorrente extends Conta {
 
     private Long valor;
 
-    public ContaCorrente(Long numero, Long valor) {
+    @JsonCreator
+    public ContaCorrente(@JsonProperty("numero")Long numero, @JsonProperty("valor")Long valor) {
         super(numero);
         this.valor = valor;
     }

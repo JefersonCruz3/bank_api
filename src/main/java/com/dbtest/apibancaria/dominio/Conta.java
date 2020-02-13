@@ -1,7 +1,13 @@
 package com.dbtest.apibancaria.dominio;
 
+import javax.persistence.Id;
+import javax.persistence.MappedSuperclass;
+
+@MappedSuperclass
 public abstract class Conta {
-  protected Long numero;
+
+    @Id
+    protected Long numero;
 
     public Conta(Long numero) {
         this.numero = numero;
