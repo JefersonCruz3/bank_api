@@ -1,5 +1,10 @@
 package com.dbtest.apibancaria.dominio;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "conta_corrente")
 public class ContaCorrente extends Conta {
 
     private Long valor;
