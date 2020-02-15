@@ -33,7 +33,7 @@ public class ContaCorrenteTeste {
 
     @Before
     public  void setup(){
-        contaCorrenteEsperada = new ContaCorrente(Long.valueOf(1), Long.valueOf(0));
+        contaCorrenteEsperada = new ContaCorrente(1L, 0L);
     }
 
     @Test
