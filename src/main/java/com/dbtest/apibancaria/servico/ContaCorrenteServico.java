@@ -2,12 +2,14 @@ package com.dbtest.apibancaria.servico;
 
 import com.dbtest.apibancaria.dominio.ContaCorrente;
 import com.dbtest.apibancaria.repositorio.ContaCorrenteRepositorio;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class ContaCorrenteServico {
     private ContaCorrenteRepositorio repositorio;
 
+    @Autowired
     public ContaCorrenteServico(ContaCorrenteRepositorio repositorio) {
         this.repositorio = repositorio;
     }
