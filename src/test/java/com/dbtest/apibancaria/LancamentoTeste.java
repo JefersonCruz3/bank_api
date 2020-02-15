@@ -1,5 +1,8 @@
 package com.dbtest.apibancaria;
 
+import com.dbtest.apibancaria.dominio.Lancamento;
+import com.dbtest.apibancaria.repositorio.LancamentoRepositorio;
+import com.dbtest.apibancaria.servico.LancamentoServico;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Rule;
