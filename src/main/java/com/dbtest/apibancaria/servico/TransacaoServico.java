@@ -4,7 +4,11 @@ import com.dbtest.apibancaria.dominio.ContaCorrente;
 import com.dbtest.apibancaria.dominio.Lancamento;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Service
 public class TransacaoServico {
@@ -31,6 +35,27 @@ public class TransacaoServico {
             contaCorrenteServico.save(contaDestino);
         }
 
+        this.validarTransacao(lancamento);
         return lancamentoServico.save(lancamento);
+    }
+
+    private void validarTransacao(Lancamento lancamento){
+        List<ContaCorrente> listaContaCorrente = contaCorrenteServico.findAll();
+        List<Long> listaContaCorrenteNumero = listaContaCorrente.stream()
+                                                    .map(ContaCorrente::getNumero)
+                                                    .collect(Collectors.toList());
+
+        if (!(listaContaCorrenteNumero.contains(lancamento.getContaOrigem())
+                || listaContaCorrenteNumero.contains(lancamento.getContaDestino()))){
+            throw new IllegalArgumentException("Conta corrente origem e destino não encontrada");
+        }
+
+        if (!listaContaCorrenteNumero.contains(lancamento.getContaOrigem())){
+            throw new IllegalArgumentException("Conta corrente origem não encontrada");
+        }
+
+        if (!listaContaCorrenteNumero.contains(lancamento.getContaDestino())){
+            throw new IllegalArgumentException("Conta corrente destino não encontrada");
+        }
     }
 }
