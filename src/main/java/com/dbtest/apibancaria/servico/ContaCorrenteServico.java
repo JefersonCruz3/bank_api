@@ -24,6 +24,10 @@ public class ContaCorrenteServico {
         return contaCorrenteRepositorio.save(contaCorrente);
     }
 
+    public ContaCorrente atualizar (ContaCorrente contaCorrente){
+        return contaCorrenteRepositorio.save(contaCorrente);
+    }
+
     public Optional<ContaCorrente> findById(long contaCorrente){
         return contaCorrenteRepositorio.findById(contaCorrente);
     }
