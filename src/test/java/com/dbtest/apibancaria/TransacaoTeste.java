@@ -53,8 +53,8 @@ public class TransacaoTeste {
         when(contaCorrenteServico.findById(lancamento.getContaOrigem())).thenReturn(Optional.ofNullable(contaCorrenteOrigem));
         when(contaCorrenteServico.findById(lancamento.getContaDestino())).thenReturn(Optional.ofNullable(contaCorrenteDestino));
         when(contaCorrenteServico.findAll()).thenReturn(Arrays.asList(contaCorrenteOrigem, contaCorrenteDestino));
-        when(contaCorrenteServico.save(contaCorrenteOrigem)).thenReturn(contaCorrenteOrigem);
-        when(contaCorrenteServico.save(contaCorrenteDestino)).thenReturn(contaCorrenteDestino);
+        when(contaCorrenteServico.atualizar(contaCorrenteOrigem)).thenReturn(contaCorrenteOrigem);
+        when(contaCorrenteServico.atualizar(contaCorrenteDestino)).thenReturn(contaCorrenteDestino);
         when(lancamentoServico.save(lancamento)).thenReturn(lancamento);
 
         ContaCorrente contaCorrenteEsperada = contaCorrenteOrigem;
@@ -68,8 +68,9 @@ public class TransacaoTeste {
         Mockito.verify(contaCorrenteServico, Mockito.times(1)).findById(1L);
         Mockito.verify(contaCorrenteServico, Mockito.times(1)).findById(2L);
         Mockito.verify(contaCorrenteServico, Mockito.times(1)).findAll();
-        Mockito.verify(contaCorrenteServico, Mockito.times(1)).save(contaCorrenteOrigem);
-        Mockito.verify(contaCorrenteServico, Mockito.times(1)).save(contaCorrenteDestino);
+        Mockito.verify(contaCorrenteServico, Mockito.times(1)).atualizar(contaCorrenteOrigem);
+        Mockito.verify(contaCorrenteServico, Mockito.times(1)).atualizar(contaCorrenteDestino);
+        Mockito.verify(lancamentoServico, Mockito.times(1)).save(lancamento);
     }
 
     @Test
@@ -77,8 +78,8 @@ public class TransacaoTeste {
         when(contaCorrenteServico.findById(lancamento.getContaOrigem())).thenReturn(Optional.ofNullable(contaCorrenteOrigem));
         when(contaCorrenteServico.findById(lancamento.getContaDestino())).thenReturn(Optional.ofNullable(contaCorrenteDestino));
         when(contaCorrenteServico.findAll()).thenReturn(Arrays.asList(contaCorrenteOrigem, contaCorrenteDestino));
-        when(contaCorrenteServico.save(contaCorrenteOrigem)).thenReturn(contaCorrenteOrigem);
-        when(contaCorrenteServico.save(contaCorrenteDestino)).thenReturn(contaCorrenteDestino);
+        when(contaCorrenteServico.atualizar(contaCorrenteOrigem)).thenReturn(contaCorrenteOrigem);
+        when(contaCorrenteServico.atualizar(contaCorrenteDestino)).thenReturn(contaCorrenteDestino);
         when(lancamentoServico.save(lancamento)).thenReturn(lancamento);
 
         ContaCorrente contaCorrenteEsperada = contaCorrenteDestino;
@@ -92,8 +93,9 @@ public class TransacaoTeste {
         Mockito.verify(contaCorrenteServico, Mockito.times(1)).findById(1L);
         Mockito.verify(contaCorrenteServico, Mockito.times(1)).findById(2L);
         Mockito.verify(contaCorrenteServico, Mockito.times(1)).findAll();
-        Mockito.verify(contaCorrenteServico, Mockito.times(1)).save(contaCorrenteOrigem);
-        Mockito.verify(contaCorrenteServico, Mockito.times(1)).save(contaCorrenteDestino);
+        Mockito.verify(contaCorrenteServico, Mockito.times(1)).atualizar(contaCorrenteOrigem);
+        Mockito.verify(contaCorrenteServico, Mockito.times(1)).atualizar(contaCorrenteDestino);
+        Mockito.verify(lancamentoServico, Mockito.times(1)).save(lancamento);
     }
 
     @Test
