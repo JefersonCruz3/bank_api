@@ -31,4 +31,21 @@ public class ContaCorrenteServico {
         return contaCorrenteRepositorio.findAll();
     }
 
+    public void contaCorrenteValidacao(ContaCorrente contaCorrente){
+
+        if(StringUtils.isEmpty(contaCorrente.getNumero())){
+            throw new IllegalArgumentException("Conta corrente deve conter um numero");
+        }
+
+        if(StringUtils.isEmpty(contaCorrente.getValor())){
+            throw new IllegalArgumentException("Conta corrente não pode salvar um saldo nulo");
+        }
+
+        this.findAll().forEach(registro -> {
+            if (registro.getNumero().equals(contaCorrente.getNumero())){
+                throw new IllegalArgumentException("Conta corrente já existe na base de dados");
+            }
+        });
+    }
+
 }
