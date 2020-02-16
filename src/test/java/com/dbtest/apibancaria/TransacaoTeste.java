@@ -16,6 +16,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Optional;
 
@@ -51,6 +52,7 @@ public class TransacaoTeste {
     public void deveRetornarOkSeSubitrairSaldoNaContaOrigem(){
         when(contaCorrenteServico.findById(lancamento.getContaOrigem())).thenReturn(Optional.ofNullable(contaCorrenteOrigem));
         when(contaCorrenteServico.findById(lancamento.getContaDestino())).thenReturn(Optional.ofNullable(contaCorrenteDestino));
+        when(contaCorrenteServico.findAll()).thenReturn(Arrays.asList(contaCorrenteOrigem, contaCorrenteDestino));
         when(contaCorrenteServico.save(contaCorrenteOrigem)).thenReturn(contaCorrenteOrigem);
         when(contaCorrenteServico.save(contaCorrenteDestino)).thenReturn(contaCorrenteDestino);
         when(lancamentoServico.save(lancamento)).thenReturn(lancamento);
@@ -65,6 +67,7 @@ public class TransacaoTeste {
 
         Mockito.verify(contaCorrenteServico, Mockito.times(1)).findById(1L);
         Mockito.verify(contaCorrenteServico, Mockito.times(1)).findById(2L);
+        Mockito.verify(contaCorrenteServico, Mockito.times(1)).findAll();
         Mockito.verify(contaCorrenteServico, Mockito.times(1)).save(contaCorrenteOrigem);
         Mockito.verify(contaCorrenteServico, Mockito.times(1)).save(contaCorrenteDestino);
     }
@@ -73,6 +76,7 @@ public class TransacaoTeste {
     public void deveRetornarOkSeAdicionarSaldoNaContaDestino(){
         when(contaCorrenteServico.findById(lancamento.getContaOrigem())).thenReturn(Optional.ofNullable(contaCorrenteOrigem));
         when(contaCorrenteServico.findById(lancamento.getContaDestino())).thenReturn(Optional.ofNullable(contaCorrenteDestino));
+        when(contaCorrenteServico.findAll()).thenReturn(Arrays.asList(contaCorrenteOrigem, contaCorrenteDestino));
         when(contaCorrenteServico.save(contaCorrenteOrigem)).thenReturn(contaCorrenteOrigem);
         when(contaCorrenteServico.save(contaCorrenteDestino)).thenReturn(contaCorrenteDestino);
         when(lancamentoServico.save(lancamento)).thenReturn(lancamento);
@@ -87,6 +91,7 @@ public class TransacaoTeste {
 
         Mockito.verify(contaCorrenteServico, Mockito.times(1)).findById(1L);
         Mockito.verify(contaCorrenteServico, Mockito.times(1)).findById(2L);
+        Mockito.verify(contaCorrenteServico, Mockito.times(1)).findAll();
         Mockito.verify(contaCorrenteServico, Mockito.times(1)).save(contaCorrenteOrigem);
         Mockito.verify(contaCorrenteServico, Mockito.times(1)).save(contaCorrenteDestino);
     }
