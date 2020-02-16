@@ -35,7 +35,7 @@ public class LancamentoTeste {
     }
 
     @Test
-    public void deveRetornarOkSeAdicionarLnacamentoValido(){
+    public void deveRetornarOkSeAdicionarLancamentoValido(){
         when(repositorio.save(lancamentoEsperado)).thenReturn(lancamentoEsperado);
 
         Lancamento lancamento = lancamentoServico.save(lancamentoEsperado);
@@ -44,7 +44,4 @@ public class LancamentoTeste {
 
         Mockito.verify(repositorio, Mockito.times(1)).save(lancamentoEsperado);
     }
-
-
-
 }

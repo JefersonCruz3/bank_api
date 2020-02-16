@@ -1,9 +1,8 @@
 package com.dbtest.apibancaria.dominio;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
-
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Id;
+import javax.persistence.MappedSuperclass;
 
 @MappedSuperclass
 public abstract class Conta {
