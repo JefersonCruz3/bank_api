@@ -14,6 +14,8 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 
+import java.util.Optional;
+
 import static org.mockito.Mockito.when;
 
 
@@ -45,5 +47,16 @@ public class ContaCorrenteTeste {
         Assert.assertEquals(contaCorrenteEsperada.getNumero(), contaCorrente.getNumero());
 
         Mockito.verify(repositorio, Mockito.times(1)).save(contaCorrenteEsperada);
+    }
+
+    @Test
+    public void deveRetornarOkSeBuscarContaCorrenteRequerida(){
+        when(repositorio.findById(1L)).thenReturn(Optional.ofNullable(contaCorrenteEsperada));
+
+        Optional<ContaCorrente> contaCorrenteContainer = contaCorrenteServico.findById(1L);
+
+        contaCorrenteContainer.ifPresent(contaCorrente -> Assert.assertEquals(contaCorrenteEsperada.getNumero(), contaCorrente.getNumero()));
+
+        Mockito.verify(repositorio, Mockito.times(1)).findById(1L);
     }
 }
