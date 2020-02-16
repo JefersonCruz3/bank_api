@@ -5,17 +5,23 @@ import com.dbtest.apibancaria.repositorio.ContaCorrenteRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class ContaCorrenteServico {
-    private ContaCorrenteRepositorio repositorio;
+    private ContaCorrenteRepositorio contaCorrenteRepositorio;
 
     @Autowired
-    public ContaCorrenteServico(ContaCorrenteRepositorio repositorio) {
-        this.repositorio = repositorio;
+    public ContaCorrenteServico(ContaCorrenteRepositorio contaCorrenteRepositorio) {
+        this.contaCorrenteRepositorio = contaCorrenteRepositorio;
     }
 
     public ContaCorrente save (ContaCorrente contaCorrente){
-        return repositorio.save(contaCorrente);
+        return contaCorrenteRepositorio.save(contaCorrente);
+    }
+
+    public Optional<ContaCorrente> findById(long contaCorrente){
+        return contaCorrenteRepositorio.findById(contaCorrente);
     }
 
 }
