@@ -57,7 +57,7 @@ public class TransacaoTeste {
         when(contaCorrenteServico.atualizar(contaCorrenteDestino)).thenReturn(contaCorrenteDestino);
         when(lancamentoServico.save(lancamento)).thenReturn(lancamento);
 
-        ContaCorrente contaCorrenteEsperada = contaCorrenteOrigem;
+        ContaCorrente contaCorrenteEsperada = new ContaCorrente(contaCorrenteOrigem.getNumero(), contaCorrenteOrigem.getValor());
         long valor = 10;
         contaCorrenteEsperada.setValor(contaCorrenteEsperada.getValor() - valor);
 
@@ -82,7 +82,7 @@ public class TransacaoTeste {
         when(contaCorrenteServico.atualizar(contaCorrenteDestino)).thenReturn(contaCorrenteDestino);
         when(lancamentoServico.save(lancamento)).thenReturn(lancamento);
 
-        ContaCorrente contaCorrenteEsperada = contaCorrenteDestino;
+        ContaCorrente contaCorrenteEsperada = new ContaCorrente(contaCorrenteDestino.getNumero(), contaCorrenteDestino.getValor());
         long valor = 10;
         contaCorrenteEsperada.setValor(contaCorrenteEsperada.getValor() + valor);
 
