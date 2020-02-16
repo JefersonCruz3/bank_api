@@ -31,8 +31,8 @@ public class TransacaoServico {
             contaOrigem.setValor(contaOrigem.getValor() - lancamento.getValor());
             contaDestino.setValor(contaDestino.getValor() + lancamento.getValor());
 
-            contaCorrenteServico.save(contaOrigem);
-            contaCorrenteServico.save(contaDestino);
+            contaCorrenteServico.atualizar(contaOrigem);
+            contaCorrenteServico.atualizar(contaDestino);
         }
 
         this.validarTransacao(lancamento);
