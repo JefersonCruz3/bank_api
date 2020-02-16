@@ -16,6 +16,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 
+import java.util.Collections;
 import java.util.Optional;
 
 import static org.mockito.Mockito.when;
@@ -88,5 +89,41 @@ public class TransacaoTeste {
         Mockito.verify(contaCorrenteServico, Mockito.times(1)).findById(2L);
         Mockito.verify(contaCorrenteServico, Mockito.times(1)).save(contaCorrenteOrigem);
         Mockito.verify(contaCorrenteServico, Mockito.times(1)).save(contaCorrenteDestino);
+    }
+
+    @Test
+    public void deveLancarExceptionSeTentarSalvarTransacaoComContaOrigemNaoEncontrada(){
+        when(contaCorrenteServico.findAll()).thenReturn(Collections.singletonList(contaCorrenteDestino));
+
+        expectedException.expect(IllegalArgumentException.class);
+        expectedException.expectMessage("Conta corrente origem não encontrada");
+
+        transacao.efetuarTransacao(lancamento);
+
+        Mockito.verify(contaCorrenteServico, Mockito.times(1)).findAll();
+    }
+
+    @Test
+    public void deveLancarExceptionSeTentarSalvarTransacaoComContaDestinoNaoEncontrada(){
+        when(contaCorrenteServico.findAll()).thenReturn(Collections.singletonList(contaCorrenteOrigem));
+
+        expectedException.expect(IllegalArgumentException.class);
+        expectedException.expectMessage("Conta corrente destino não encontrada");
+
+        transacao.efetuarTransacao(lancamento);
+
+        Mockito.verify(contaCorrenteServico, Mockito.times(1)).findAll();
+    }
+
+    @Test
+    public void deveLancarExceptionSeTentarSalvarTransacaoComContaOrigemEContaDestinoNaoEncontrada(){
+        when(contaCorrenteServico.findAll()).thenReturn(Collections.emptyList());
+
+        expectedException.expect(IllegalArgumentException.class);
+        expectedException.expectMessage("Conta corrente origem e destino não encontrada");
+
+        transacao.efetuarTransacao(lancamento);
+
+        Mockito.verify(contaCorrenteServico, Mockito.times(1)).findAll();
     }
 }
