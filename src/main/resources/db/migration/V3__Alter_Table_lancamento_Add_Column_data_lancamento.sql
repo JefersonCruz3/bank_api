@@ -1,0 +1,1 @@
+ALTER TABLE lancamento ADD COLUMN data_lancamento timestamp(0) without time zone DEFAULT now();
