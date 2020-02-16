@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class ContaCorrenteServico {
@@ -32,6 +33,9 @@ public class ContaCorrenteServico {
     }
 
     public void contaCorrenteValidacao(ContaCorrente contaCorrente){
+        List<Long> listaContaCorrentesNumero = this.findAll().stream()
+                                                            .map(ContaCorrente::getNumero)
+                                                            .collect(Collectors.toList());
 
         if(StringUtils.isEmpty(contaCorrente.getNumero())){
             throw new IllegalArgumentException("Conta corrente deve conter um numero");
@@ -41,11 +45,10 @@ public class ContaCorrenteServico {
             throw new IllegalArgumentException("Conta corrente não pode salvar um saldo nulo");
         }
 
-        this.findAll().forEach(registro -> {
-            if (registro.getNumero().equals(contaCorrente.getNumero())){
+        if (listaContaCorrentesNumero.contains(contaCorrente.getNumero())) {
                 throw new IllegalArgumentException("Conta corrente já existe na base de dados");
-            }
-        });
+        }
+
     }
 
 }
