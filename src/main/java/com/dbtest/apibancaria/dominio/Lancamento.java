@@ -1,9 +1,10 @@
 package com.dbtest.apibancaria.dominio;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.*;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name ="lancamento")
@@ -11,6 +12,10 @@ import javax.persistence.*;
 public class Lancamento {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "lancamento_seq")
+
+    @Column(name = "data_lancamento")
+    private LocalDateTime data;
+
     private long id;
     private long contaOrigem;
     private long valor;
@@ -59,5 +64,13 @@ public class Lancamento {
 
     public void setContaDestino(long contaDestino) {
         this.contaDestino = contaDestino;
+    }
+
+    public LocalDateTime getData() {
+        return data;
+    }
+
+    public void setData(LocalDateTime data) {
+        this.data = data;
     }
 }
