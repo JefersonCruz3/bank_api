@@ -10,13 +10,14 @@ import java.time.LocalDateTime;
 @Table(name ="lancamento")
 @SequenceGenerator(name="lancamento_seq", initialValue=1, allocationSize=1)
 public class Lancamento {
+    
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "lancamento_seq")
-
+    private long id;
+    
     @Column(name = "data_lancamento")
     private LocalDateTime data;
-
-    private long id;
+    
     private long contaOrigem;
     private long valor;
     private long contaDestino;
